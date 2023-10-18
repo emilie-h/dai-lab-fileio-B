@@ -1,4 +1,4 @@
-package ch.heig.dai.lab.fileio.maximesch;
+package ch.heig.dai.lab.fileio.fabricechapuis;
 
 import java.io.File;
 import java.util.HashSet;
@@ -25,15 +25,14 @@ public class FileExplorer {
      * @return a new file, or null if there is no new file
      */
     public File getNewFile() {
-        File[] filesInFolder = folder.listFiles();
-        if (filesInFolder == null){
-            return null;
-        }
+        File[] potential_files = this.folder.listFiles();
 
-        for(File curFile : filesInFolder){
-            if(!knownFiles.contains(curFile)){
-                knownFiles.add(curFile);
-                return curFile;
+        if (potential_files != null) {
+            for (File file : potential_files) {
+                if (!this.knownFiles.contains(file)) {
+                    this.knownFiles.add(file);
+                    return file;
+                }
             }
         }
         return null;
