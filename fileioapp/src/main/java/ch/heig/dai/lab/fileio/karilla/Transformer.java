@@ -22,9 +22,8 @@ public class Transformer {
      * @param source the string to transform
      * @return the transformed string
      */
-    public String replaceChuck(String source) {
-        // TODO: Implement the method body here.
-        return "";
+    public String replaceChuck(String source){
+        return source.replace("Chuck Norris", newName);
     }
 
     /**
