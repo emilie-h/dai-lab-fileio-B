@@ -73,31 +73,24 @@ public class Transformer {
         // Use the StringBuilder class to build the result string.
         StringBuilder stringBuilder = new StringBuilder();
         // Split the string into words
-        String[] words = source.split(" ");
+        String[] words = source.split("\\s");
         // Loop through all the words
         for (int i = 0; i < words.length; i++) {
-            // If the word is the first of the line
+            // Add number of the line
             if (i % numWordsPerLine == 0) {
-                // Add the line number
-                stringBuilder.append(i / numWordsPerLine + 1);
+                stringBuilder.append((i / numWordsPerLine) + 1);
                 stringBuilder.append(". ");
             }
-            // If the word is the last of the line
-            if (i % numWordsPerLine == numWordsPerLine - 1) {
-                // Add the word
-                stringBuilder.append(words[i]);
-                // Add a new line
-                stringBuilder.append("\n");
-                continue;
-            }
-
-            // Add the word
+            // Add word
             stringBuilder.append(words[i]);
-            // Add a space
-            stringBuilder.append(" ");
+            // Add a new line if it's the last word of the line
+            if (i % numWordsPerLine == numWordsPerLine - 1 || i == words.length - 1) {
+                stringBuilder.append("\n");
+            } else {
+                stringBuilder.append(" ");
+            }
         }
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        stringBuilder.append("\n");
+
 
         return stringBuilder.toString();
 
