@@ -51,11 +51,16 @@ public class Main {
                     System.out.println("Finished");
                     break;
                 } else {
-                    System.out.println("Processing file " + currentFile.getName() + "...");
+                    System.out.println("Processing file " + currentFile.getName());
                 }
 
                 // read the file with the FileReaderWriter
-                String content = fileReaderWriter.readFile(currentFile, encodingSelector.getEncoding(currentFile));
+                var charset = encodingSelector.getEncoding(currentFile);
+                if (charset == null) {
+                    continue;
+                }
+                String content = fileReaderWriter.readFile(currentFile, charset);
+
                 //transform
                 String transformedContent = transformer.wrapAndNumberLines(transformer.capitalizeWords(transformer.replaceChuck(content)));
                 //write result
