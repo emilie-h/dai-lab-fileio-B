@@ -1,16 +1,10 @@
 package ch.heig.dai.lab.fileio;
 
-import ch.heig.dai.lab.fileio.emilieh.EncodingSelector;
-import ch.heig.dai.lab.fileio.emilieh.FileExplorer;
-import ch.heig.dai.lab.fileio.emilieh.FileReaderWriter;
-import ch.heig.dai.lab.fileio.emilieh.Transformer;
-
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 
 public class Main {
     // *** TODO: Change this to your own name ***
-    private static final String newName = "Emilie Bressoud";
+    private static final String newName = "Jean-Claude Van Damme";
 
     /**
      * Main method to transform files in a folder.
@@ -35,36 +29,10 @@ public class Main {
         int wordsPerLine = Integer.parseInt(args[1]);
         System.out.println("Application started, reading folder " + folder + "...");
         // TODO: implement the main method here
-        // Create the necessary objects (FileExplorer, EncodingSelector, FileReaderWriter, Transformer).
-        FileExplorer fileExplorer = new FileExplorer(folder);
-        EncodingSelector encodingSelector = new EncodingSelector();
-        FileReaderWriter fileReaderWriter = new FileReaderWriter();
-        Transformer transformer = new Transformer(newName, wordsPerLine);
-
 
         while (true) {
             try {
-                // In an infinite loop, get a new file from the FileExplorer, determine its encoding with the EncodingSelector,
                 // TODO: loop over all files
-                File currentFile = fileExplorer.getNewFile();
-                if (currentFile == null) {
-                    System.out.println("Finished");
-                    break;
-                } else {
-                    System.out.println("Processing file " + currentFile.getName());
-                }
-
-                // read the file with the FileReaderWriter
-                var charset = encodingSelector.getEncoding(currentFile);
-                if (charset == null) {
-                    continue;
-                }
-                String content = fileReaderWriter.readFile(currentFile, charset);
-
-                //transform
-                String transformedContent = transformer.wrapAndNumberLines(transformer.capitalizeWords(transformer.replaceChuck(content)));
-                //write result
-                fileReaderWriter.writeFile(new File(currentFile.getPath() + ".processed"), transformedContent, StandardCharsets.UTF_8);
 
             } catch (Exception e) {
                 System.out.println("Exception: " + e);
