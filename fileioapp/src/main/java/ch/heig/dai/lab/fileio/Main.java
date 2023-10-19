@@ -41,7 +41,6 @@ public class Main {
         FileReaderWriter fileReaderWriter = new FileReaderWriter();
         Transformer transformer = new Transformer(newName, wordsPerLine);
 
-
         while (true) {
             try {
                 // In an infinite loop, get a new file from the FileExplorer, determine its encoding with the EncodingSelector,
